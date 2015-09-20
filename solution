@@ -22,14 +22,11 @@ csv = response.read()
 csvstr = str(csv).strip("b'")
 str='{"type": "FeatureCollection",\n"features": ['
 lines = csvstr.split("\\n")
-geo={}
 for line in lines:
-    
     list=line.split(',')
     try:
         if list[3]>=min and list[3]<=max and list[4]>=min_bed and list[4]<=max_bed and list[5]>=min_bath and list[5]<=max_bath:
             str+='{\n"type": "feature",\n"geometry": {"type": "Point", "coordinates"},\n"properties": {\n"id":'+list[0]+'\n"price":'+list[3]+'\n"street":'+list[1]+',\n"bedrooms":'+list[4]+'\n"bathrooms": '+list[5]+'\n"sq_ft": '+list[6]+'\n},\n'
-            print(line)
     except:
         break
 str+=']\n}'
